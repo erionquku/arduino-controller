@@ -1,8 +1,10 @@
 package com.example.arduinocontroller.activity
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -22,6 +24,7 @@ import kotlin.math.abs
 
 class BasicControlActivity : AppCompatActivity(), View.OnClickListener, CoroutineScope {
 
+    private final val VOICE_INPUT = 123;
     private val TAG = BasicControlActivity::class.qualifiedName
     private var activeButton: Int = R.id.iv_basic_stop
 
@@ -60,7 +63,6 @@ class BasicControlActivity : AppCompatActivity(), View.OnClickListener, Coroutin
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-
         })
 
         launch {
@@ -104,6 +106,15 @@ class BasicControlActivity : AppCompatActivity(), View.OnClickListener, Coroutin
                 startActivity(Intent(this, TerminalActivity::class.java))
                 true
             }
+            R.id.bc_voice -> {
+                val i = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+                startActivityForResult(i, VOICE_INPUT)
+                true
+            }
+            R.id.bc_about -> {
+                startActivity(Intent(this, AboutActivity::class.java))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -114,6 +125,31 @@ class BasicControlActivity : AppCompatActivity(), View.OnClickListener, Coroutin
         this.activeButton = v.id
 
         BluetoothConnection.send(v.contentDescription.toString())
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                VOICE_INPUT -> {
+                    val voiceResult = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0).orEmpty()
+                    when {
+                        voiceResult.contains("left") -> onClick(findViewById(R.id.iv_basic_left))
+                        voiceResult.contains("right") -> onClick(findViewById(R.id.iv_basic_right))
+                        voiceResult.contains("down") || voiceResult.contains("back")
+                                -> onClick(findViewById(R.id.iv_basic_down))
+                        voiceResult.contains("up") || voiceResult.contains("forward")
+                                -> onClick(findViewById(R.id.iv_basic_up))
+                        voiceResult.contains("stop") || voiceResult.contains("freeze")
+                                -> onClick(findViewById(R.id.iv_basic_stop))
+
+                        else -> Toast
+                            .makeText(this, "Sorry, couldn't understand your command", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun changeButtonImage(buttonId: Int, active: Boolean) {
