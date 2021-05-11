@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="left"
+    tools:context=".activity.BasicControlActivity">
+
+    <ImageView
+        android:id="@+id/iv_basic_right"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:contentDescription="R"
+        android:rotation="-90"
+        android:rotationY="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/iv_basic_stop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_outline_arrow_drop_down_circle_24"
+        app:tint="?attr/colorPrimaryText" />
+
+    <ImageView
+        android:id="@+id/iv_basic_down"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:contentDescription="D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_basic_stop"
+        app:layout_constraintVertical_bias="0.05"
+        app:srcCompat="@drawable/ic_outline_arrow_drop_down_circle_24"
+        app:tint="?attr/colorPrimaryText" />
+
+    <ImageView
+        android:id="@+id/iv_basic_up"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:contentDescription="U"
+        android:rotationX="180"
+        app:layout_constraintBottom_toTopOf="@+id/iv_basic_stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        app:srcCompat="@drawable/ic_outline_arrow_drop_down_circle_24"
+        app:tint="?attr/colorPrimaryText" />
+
+    <ImageView
+        android:id="@+id/iv_basic_stop"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="S"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_round_stop_circle_24"
+        app:tint="?attr/colorPrimaryText" />
+
+    <ImageView
+        android:id="@+id/iv_basic_left"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:contentDescription="L"
+        android:rotation="90"
+        android:rotationY="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iv_basic_stop"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_outline_arrow_drop_down_circle_24"
+        app:tint="?attr/colorPrimaryText" />
+
+    <SeekBar
+        android:id="@+id/sb_basic_speed"
+        style="@android:style/Widget.Material.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:indeterminate="false"
+        android:max="3"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_basic_right"
+        app:layout_constraintStart_toStartOf="@+id/iv_basic_left"
+        app:layout_constraintTop_toBottomOf="@+id/iv_basic_down"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <TextView
+        android:id="@+id/tv_basic_speed_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Speed: 50%"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@+id/sb_basic_speed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_basic_down"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <TextView
+        android:id="@+id/tv_basic_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="15cm"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/iv_basic_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="from the closest object in front of the car"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_basic_distance" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Drag the slider above to adjust speed of the car"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb_basic_speed" />
+</androidx.constraintlayout.widget.ConstraintLayout>
