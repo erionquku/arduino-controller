@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Arduino Controller</string>
+    <string name="about"><b>Arduino Controller</b> is an Android Application used to remotely control an Arduino Car or to send and receive command from every generic <b>Arduino</b> micro-controller.\n\nApplication also uses Google Speech Recognition API to offer the possibility to input some basic commands with your voice.\n\nSupported Bluetooth Modules are <b>HC-05</b> or similar modules that can connect with the same UUID.\n</string>
+    <string name="link_email"><a href="mailto:eriquku@gmail.com">Contact me by email</a></string>
+    <string name="link_github"><a href="mailto:eriquku@gmail.com">Fork this project on GitHub</a></string>
+    <string name="link_play_store"><a href="mailto:eriquku@gmail.com">Rate this app on Play Store</a></string>
 </resources>

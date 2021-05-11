@@ -3,7 +3,6 @@
     package="com.example.arduinocontroller">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
-
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
@@ -13,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ArduinoController">
-        <activity android:name=".activity.TerminalActivity"></activity>
+        <activity android:name=".activity.AboutActivity"></activity>
+        <activity android:name=".activity.TerminalActivity" />
         <activity android:name=".activity.BasicControlActivity" />
         <activity android:name=".activity.BtHelpActivity" />
         <activity android:name=".MainActivity">
